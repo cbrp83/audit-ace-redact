@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    app: "{{ .Release.Name }}"
+    chart: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  replicas: {{ .Values.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: "{{  .Release.Name }}"
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: {{  .Release.Name }}
+    spec:
+      {{- range $.Values.volumesCm }}
+      volumes:
+        - name: {{ .name }}
+          configMap:
+            name: {{ .configMap.name }}
+            items:
+            {{- range .configMap.items }}            
+              - key: {{ .key }}
+                path: {{ .path }}
+            {{- end }} 
+            defaultMode: {{ .configMap.defaultMode }}
+      {{- end }}      
+      containers:
+      - name: {{ .Release.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        env:
+          {{- range $key, $value := $.Values.globalConfig }}
+          - name: {{ $key }}
+            valueFrom:
+              configMapKeyRef:
+                name: {{ $value }}
+                key: {{ $key }}
+          {{- end }}
+          {{- range $key, $value := $.Values.globalSecrets }}
+          - name: {{ $key }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ $value }}
+                key: {{ $key }}
+          {{- end }}
+          {{- range $key, $value := $.Values.envconfig }}
+          - name: {{ $key }}
+            value: {{ $value }}
+          {{- end }}
+        {{- range $.Values.volumeMounts }}
+        volumeMounts:
+          - name: {{ .name }}
+            mountPath: {{ .mountPath }}
+            readOnly: {{ .readOnly }}
+        {{- end }}                  
+        {{- if .Values.resources }}
+        resources:
+          requests:
+            cpu: "{{ .Values.resources.requests.cpu }}"
+            memory: "{{ .Values.resources.requests.memory }}"
+          limits:
+            cpu: "{{ .Values.resources.limits.cpu }}"
+            memory: "{{ .Values.resources.limits.memory }}"     
+        {{- end }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

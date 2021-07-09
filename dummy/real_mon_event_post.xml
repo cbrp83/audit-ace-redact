@@ -1,0 +1,75 @@
+<mon:event xmlns:mon="http://www.ibm.com/xmlns/monitoring/event/v2">
+	<mon:eventPointData>
+		<mon:eventData mon:eventSourceAddress="HTTP Reply.terminal.in" mon:productVersion="110011" mon:profileVersion="11">
+			<mon:eventIdentity mon:eventName="healthResponse.InTerminal"/>
+			<mon:eventSequence mon:counter="1" mon:creationTime="2021-05-11T14:35:10.795347Z"/>
+			<mon:eventCorrelation mon:globalTransactionId="" mon:localTransactionId="13f96e28-90b8-46cc-8751-406e217e0c10-1" mon:parentTransactionId=""/>
+		</mon:eventData>
+		<mon:messageFlowData>
+			<mon:integrationServer mon:hostName="DESKTOP-8IV82B4" mon:name="is2"/>
+			<mon:application mon:name="API1"/>
+			<mon:messageFlow mon:name="gen.API1" mon:threadId="22604" mon:uniqueFlowName="is2.API1.gen.API1"/>
+			<mon:node mon:nodeLabel="HTTP Reply" mon:nodeType="ComIbmWSReplyNode" mon:terminal="in"/>
+		</mon:messageFlowData>
+	</mon:eventPointData>
+	<mon:applicationData xmlns="">
+		<mon:complexContent mon:elementName="LocalEnvironment">
+			<LocalEnvironment>
+				<Destination>
+					<HTTP>
+						<RequestIdentifier>4556485400000000000000009c67da5b745b000000000000</RequestIdentifier>
+					</HTTP>
+					<RouterList/>
+				</Destination>
+				<HTTP>
+					<Input>
+						<Path>
+							<Segment>api1</Segment>
+							<Segment>v1</Segment>
+							<Segment>elpost</Segment>
+						</Path>
+						<QueryString>
+							<qs>2</qs>
+						</QueryString>
+					</Input>
+				</HTTP>
+				<REST>
+					<Input>
+						<Method>POST</Method>
+						<Operation>postElpost</Operation>
+						<Path>/api1/v1/elpost</Path>
+						<URI>http://desktop-8iv82b4:7800/api1/v1/elpost</URI>
+						<Parameters/>
+					</Input>
+				</REST>
+			</LocalEnvironment>
+		</mon:complexContent>
+		<mon:complexContent mon:elementName="HTTPInputHeader">
+			<HTTPInputHeader>
+				<Host>desktop-8iv82b4:7800</Host>
+				<User-Agent>insomnia/2021.3.0</User-Agent>
+				<Content-Type>application/json</Content-Type>
+				<Header1>valor1</Header1>
+				<Accept>*/*</Accept>
+				<Content-Length>20</Content-Length>
+				<X-Original-HTTP-Command>POST http://desktop-8iv82b4:7800/api1/v1/elpost HTTP/1.1</X-Original-HTTP-Command>
+				<X-Query-String>qs=2</X-Query-String>
+				<X-Server-Name>desktop-8iv82b4</X-Server-Name>
+				<X-Server-Port>7800</X-Server-Port>
+				<X-Remote-Addr>9.211.42.251</X-Remote-Addr>
+				<X-Remote-Host>DESKTOP-8IV82B4.ibm.com</X-Remote-Host>
+				<X-Scheme>http</X-Scheme>
+			</HTTPInputHeader>
+		</mon:complexContent>
+		<mon:complexContent mon:elementName="JSON">
+			<JSON>
+				<Data>
+					<mensaje>saludos</mensaje>
+				</Data>
+			</JSON>
+		</mon:complexContent>
+	</mon:applicationData>
+	<mon:bitstreamData>
+		<mon:bitstream mon:dataCCSID="1208" mon:dataEncoding="546" mon:serializationEncoding="base64Binary">UE9TVCBodHRwOi8vZGVza3RvcC04aXY4MmI0Ojc4MDAvYXBpMS92MS9lbHBvc3QgSFRUUC8xLjENCkhvc3Q6IGRlc2t0b3AtOGl2ODJiNDo3ODAwDQpVc2VyLUFnZW50OiBpbnNvbW5pYS8yMDIxLjMuMA0KQ29udGVudC1UeXBlOiBhcHBsaWNhdGlvbi9qc29uDQpIZWFkZXIxOiB2YWxvcjENCkFjY2VwdDogKi8qDQpDb250ZW50LUxlbmd0aDogMjANClgtT3JpZ2luYWwtSFRUUC1Db21tYW5kOiBQT1NUIGh0dHA6Ly9kZXNrdG9wLThpdjgyYjQ6NzgwMC9hcGkxL3YxL2VscG9zdCBIVFRQLzEuMQ0KWC1RdWVyeS1TdHJpbmc6IHFzPTINClgtU2VydmVyLU5hbWU6IGRlc2t0b3AtOGl2ODJiNA0KWC1TZXJ2ZXItUG9ydDogNzgwMA0KWC1SZW1vdGUtQWRkcjogOS4yMTEuNDIuMjUxDQpYLVJlbW90ZS1Ib3N0OiBERVNLVE9QLThJVjgyQjQuaWJtLmNvbQ0KWC1TY2hlbWU6IGh0dHANCg0KeyJtZW5zYWplIjoic2FsdWRvcyJ9</mon:bitstream>
+	</mon:bitstreamData>
+</mon:event>

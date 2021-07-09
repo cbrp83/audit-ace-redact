@@ -1,0 +1,17 @@
+{
+    "redact": {
+        "anywhere": {
+            "full": ["currency", "description", "customerCode", "Authorization"],
+            "cc": ["ccNum"]
+        },
+        "path": {
+            "full": ["data.movements.movementBranch"],
+            "cc": ["data.movements.movementPostDate"]
+        }
+    },
+    "extract": {
+        "@branchId": "redacted.request_obj.Parameters.branchCode",
+        "@currency": "redacted.request_obj.Parameters.currency",
+        "@message": "redacted.response"
+    }
+}

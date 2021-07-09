@@ -1,0 +1,36 @@
+replicas: 1
+image:
+  pullPolicy: IfNotPresent
+resources:
+  requests:
+    cpu: 200m
+    memory: 700Mi
+  limits:
+    cpu: 700m
+    memory: 1000Mi    
+globalConfig:
+  QUEUE: audit-mqa-cm
+  QUEUEMANAGER: audit-mqa-cm
+  MQHOST: audit-mqa-cm
+  MQPORT: audit-mqa-cm
+  MQCHANNEL: audit-mqa-cm
+  http_proxy: global-proxy-cm
+  https_proxy: global-proxy-cm 
+globalSecrets:
+  API_KEY: nri-global-sc
+  MQUSER: audit-mqa-sec
+  MQPASSWORD: audit-mqa-sec
+imagePullSecrets: 
+  - name: jarvis-ace-acr
+volumesCm:
+  - name: config
+    configMap:
+      name: audit-ace-redact-config-cm
+      items:
+        - key: config.json
+          path: config.json
+      defaultMode: 420    
+volumeMounts:
+  - name: config
+    mountPath: /config
+    readOnly: true      

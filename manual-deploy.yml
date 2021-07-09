@@ -1,0 +1,81 @@
+# http://acreu2c008jrvsdev001.azurecr.io/ms/audit-redact:0.1.0-audit.1-166
+#
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: audit-redact
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: audit-redact
+  template:
+    metadata:
+      labels:
+        app: audit-redact
+    spec:
+      containers:
+        - name: audit-redact
+          image: >-
+            acreu2c008jrvsdev001.azurecr.io/ms/audit-redact:0.1.0-audit.1-166
+          env:
+            - name: MQUSER
+              valueFrom:
+                secretKeyRef:
+                  name:  audit-sec
+                  key: MQUSER
+            - name: MQPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name:  audit-sec
+                  key: MQPASSWORD
+            - name: QUEUE
+              valueFrom:
+                configMapKeyRef:
+                  name: audit-cm
+                  key: QUEUE
+            - name: QUEUEMANAGER
+              valueFrom:
+                configMapKeyRef:
+                  name: audit-cm
+                  key: QUEUEMANAGER
+            - name: MQHOST
+              valueFrom:
+                configMapKeyRef:
+                  name: audit-cm
+                  key: MQHOST
+            - name: MQPORT
+              valueFrom:
+                configMapKeyRef:
+                  name: audit-cm
+                  key: MQPORT
+            - name: MQCHANNEL
+              valueFrom:
+                configMapKeyRef:
+                  name: audit-cm
+                  key: MQCHANNEL
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: nri-global-sc
+                  key: API_KEY       
+            - name: http_proxy
+              value: '10.13.70.53:3128'
+            - name: https_proxy
+              value: '10.13.70.53:3128'                             
+          resources:
+            limits:
+              cpu: 700m
+              memory: 1000Mi
+            requests:
+              cpu: 200m
+              memory: 700Mi
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: jarvis-ace-acr
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  revisionHistoryLimit: 3

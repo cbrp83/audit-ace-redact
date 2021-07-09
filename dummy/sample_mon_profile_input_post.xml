@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<profile:monitoringProfile
+	xmlns:profile="http://www.ibm.com/xmlns/monitoring/11/profile"
+	profile:version="2.0">
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.out"
+		profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="healthResponse.InTerminal"></profile:eventName>
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId
+					profile:sourceOfId="automatic"></profile:localTransactionId>
+				<profile:parentTransactionId
+					profile:sourceOfId="automatic"></profile:parentTransactionId>
+				<profile:globalTransactionId
+					profile:sourceOfId="automatic"></profile:globalTransactionId>
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()"></profile:eventFilter>
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$LocalEnvironment"></profile:payloadQuery>
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/HTTPInputHeader"></profile:payloadQuery>
+			</profile:complexContent>			
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/JSON"></profile:payloadQuery>
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$InputRoot"></profile:payloadQuery>
+			</profile:complexContent>						
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$InputProperties"></profile:payloadQuery>
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$InputLocalEnvironment"></profile:payloadQuery>
+			</profile:complexContent>
+
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery
+			profile:bitstreamContent="all" profile:encoding="base64Binary"></profile:bitstreamDataQuery>
+	</profile:eventSource>
+</profile:monitoringProfile>

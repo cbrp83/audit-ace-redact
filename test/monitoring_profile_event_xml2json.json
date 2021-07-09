@@ -1,0 +1,148 @@
+{
+    "mon:event": {
+        "mon:applicationData": {
+            "mon:complexContent": [
+                {
+                    "REST": {
+                        "Input": {
+                            "Method": "GET",
+                            "Operation": "get2",
+                            "Parameters": {
+                                "accountNumber": "7003259185",
+                                "bank": "03",
+                                "branchCode": "898",
+                                "currency": "604",
+                                "parent-id": "0018-mb-bff-ms",
+                                "product": "11",
+                                "sequenceNumber": "0",
+                                "subProduct": "205",
+                                "trace-id": "33694464"
+                            },
+                            "Path": "/canonical/accountmanagement/accounts/1/movements",
+                            "URI": "http://account-movements-canonical-ace-monitoringprofile-normal.apps.ocpsbx.grupoib.local/canonical/accountmanagement/accounts/1/movements"
+                        }
+                    },
+                    "mon:elementName": "REST"
+                },
+                {
+                    "Data": {
+                        "data": {
+                            "accountData": {
+                                "availableBalance": "9601334286.64",
+                                "countableBalance": "9601334286.64",
+                                "descriptionType": {},
+                                "hasMoreMovements": "1",
+                                "partialBalance": "9601334594.04",
+                                "retentionFlag": {},
+                                "subProduct": "205",
+                                "withholidingBalance": "0.00"
+                            },
+                            "arraysample": {
+                                "a": [
+                                    "uno",
+                                    "dos"
+                                ]
+                            },
+                            "customerData": {
+                                "customerCode": "000060396703",
+                                "line1": "REGRE BPI Lunea WARHOL",
+                                "line2": {},
+                                "pathSampleA": "001",
+                                "pathSampleB": "002"
+                            },
+                            "movements": {
+                                "Item": [
+                                    {
+                                        "amount": "4.50",
+                                        "amountSign": "-",
+                                        "balance": "9601334286.64",
+                                        "ccNum": "ABCDEF123456WXYZ",
+                                        "countableMovementDate": "2021-02-08",
+                                        "description": "TRANSF WEB/APP",
+                                        "documentNumber": "03993",
+                                        "movementBranch": "898",
+                                        "movementChannel": "WEB",
+                                        "movementDetail": {},
+                                        "movementHour": "092342",
+                                        "movementLocation": {},
+                                        "movementPayer": {},
+                                        "movementPostDate": "2021-02-08",
+                                        "movementSequence": "3993",
+                                        "transactionCode": "6391"
+                                    },
+                                    {
+                                        "amount": "4.50",
+                                        "amountSign": "-",
+                                        "balance": "9601334291.14",
+                                        "ccNum": "ABCDE123456WXYZ",
+                                        "countableMovementDate": "2021-02-02",
+                                        "description": "TRANSF WEB/APP",
+                                        "documentNumber": "03992",
+                                        "movementBranch": "898",
+                                        "movementChannel": "WEB",
+                                        "movementDetail": {},
+                                        "movementHour": "202046",
+                                        "movementLocation": {},
+                                        "movementPayer": {},
+                                        "movementPostDate": "2021-02-02",
+                                        "movementSequence": "3992",
+                                        "pathSampleA": "003",
+                                        "pathSampleB": "004",
+                                        "transactionCode": "6391"
+                                    }
+                                ]
+                            },
+                            "movementsQuantity": "20",
+                            "totalMovementsQuantity": "0"
+                        },
+                        "status": {
+                            "code": "0000",
+                            "desc": "Respuesta exitosa"
+                        }
+                    },
+                    "mon:elementName": "Data"
+                }
+            ],
+            "xmlns": ""
+        },
+        "mon:eventPointData": {
+            "mon:eventData": {
+                "mon:eventCorrelation": {
+                    "mon:globalTransactionId": "",
+                    "mon:localTransactionId": "f64b234e-9641-11eb-b35e-ac1ec9790000-1",
+                    "mon:parentTransactionId": ""
+                },
+                "mon:eventIdentity": {
+                    "mon:eventName": "HTTP Reply.InTerminal"
+                },
+                "mon:eventSequence": {
+                    "mon:counter": "2",
+                    "mon:creationTime": "2021-04-05T19:07:13.293678Z"
+                },
+                "mon:eventSourceAddress": "HTTP Reply.terminal.in",
+                "mon:productVersion": "110010",
+                "mon:profileVersion": "11"
+            },
+            "mon:messageFlowData": {
+                "mon:application": {
+                    "mon:name": "AccountsCanonicalMovementsREST"
+                },
+                "mon:integrationServer": {
+                    "mon:hostName": "account-movements-canonical-ace-monitoringprofile-75cd54c8h9bzr",
+                    "mon:name": "account-movements-canonical-ace-monitoringprofile"
+                },
+                "mon:messageFlow": {
+                    "mon:name": "gen.AccountsCanonicalMovementsREST",
+                    "mon:threadId": "286",
+                    "mon:uniqueFlowName": "account-movements-canonical-ace-monitoringprofile.AccountsCanonicalMovementsREST.gen.AccountsCanonicalMovementsREST"
+                },
+                "mon:node": {
+                    "mon:nodeLabel": "HTTP Reply",
+                    "mon:nodeType": "ComIbmWSReplyNode",
+                    "mon:terminal": "in"
+                }
+            }
+        },
+        "xmlns:mon": "http://www.ibm.com/xmlns/monitoring/event/v2"
+    }
+}

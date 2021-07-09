@@ -1,0 +1,7 @@
+cd repos/audit-redact/
+docker build -t audit-redact .
+
+docker run --name audit audit-redact \
+	-e MQHOST=localhost -e MQPORT=1414 \
+	-e MQCHANNEL=DEV.APP.SVRCONN -e=QUEUEMANAGER=QM1 \
+	-e QUEUE=DEV.QUEUE.1 -e MQUSER=mqapp -e MQPASSWORD=password

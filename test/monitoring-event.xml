@@ -1,0 +1,112 @@
+<mon:event xmlns:mon="http://www.ibm.com/xmlns/monitoring/event/v2">
+    <mon:eventPointData>
+        <mon:eventData mon:eventSourceAddress="HTTP Reply.terminal.in" mon:productVersion="110010" mon:profileVersion="11">
+            <mon:eventIdentity mon:eventName="HTTP Reply.InTerminal"/>
+            <mon:eventSequence mon:counter="2" mon:creationTime="2021-04-05T19:07:13.293678Z"/>
+            <mon:eventCorrelation mon:globalTransactionId="" mon:localTransactionId="f64b234e-9641-11eb-b35e-ac1ec9790000-1" mon:parentTransactionId=""/>
+        </mon:eventData>
+        <mon:messageFlowData>
+            <mon:integrationServer mon:hostName="account-movements-canonical-ace-monitoringprofile-75cd54c8h9bzr" mon:name="account-movements-canonical-ace-monitoringprofile"/>
+            <mon:application mon:name="AccountsCanonicalMovementsREST"/>
+            <mon:messageFlow mon:name="gen.AccountsCanonicalMovementsREST" mon:threadId="286" mon:uniqueFlowName="account-movements-canonical-ace-monitoringprofile.AccountsCanonicalMovementsREST.gen.AccountsCanonicalMovementsREST"/>
+            <mon:node mon:nodeLabel="HTTP Reply" mon:nodeType="ComIbmWSReplyNode" mon:terminal="in"/>
+        </mon:messageFlowData>
+    </mon:eventPointData>
+    <mon:applicationData xmlns="">
+        <mon:complexContent mon:elementName="REST">
+            <REST>
+                <Input>
+                    <Method>GET</Method>
+                    <Operation>get2</Operation>
+                    <Path>/canonical/accountmanagement/accounts/1/movements</Path>
+                    <URI>http://account-movements-canonical-ace-monitoringprofile-normal.apps.ocpsbx.grupoib.local/canonical/accountmanagement/accounts/1/movements</URI>
+                    <Parameters>
+                        <accountNumber>7003259185</accountNumber>
+                        <bank>03</bank>
+                        <branchCode>898</branchCode>
+                        <currency>604</currency>
+                        <parent-id>0018-mb-bff-ms</parent-id>
+                        <product>11</product>
+                        <sequenceNumber>0</sequenceNumber>
+                        <subProduct>205</subProduct>
+                        <trace-id>33694464</trace-id>
+                    </Parameters>
+                </Input>
+            </REST>
+        </mon:complexContent>
+        <mon:complexContent mon:elementName="Data">
+            <Data>
+                <status>
+                    <code>0000</code>
+                    <desc>Respuesta exitosa</desc>
+                </status>
+                <data>
+                    <movementsQuantity>20</movementsQuantity>
+                    <totalMovementsQuantity>0</totalMovementsQuantity>
+                    <arraysample>
+                        <a>uno</a>
+                        <a>dos</a>
+                    </arraysample>
+                    <movements>
+                        <Item>
+                            <countableMovementDate>2021-02-08</countableMovementDate>
+                            <description>TRANSF WEB/APP</description>
+                            <documentNumber>03993</documentNumber>
+                            <movementBranch>898</movementBranch>
+                            <ccNum>ABCDEF123456WXYZ</ccNum>
+                            <amount>4.50</amount>
+                            <amountSign>-</amountSign>
+                            <balance>9601334286.64</balance>
+                            <transactionCode>6391</transactionCode>
+                            <movementPostDate>2021-02-08</movementPostDate>
+                            <movementSequence>3993</movementSequence>
+                            <movementHour>092342</movementHour>
+                            <movementChannel>WEB</movementChannel>
+                            <movementLocation/>
+                            <movementDetail/>
+                            <movementPayer/>
+                        </Item>
+                        <Item>
+                            <countableMovementDate>2021-02-02</countableMovementDate>
+                            <description>TRANSF WEB/APP</description>
+                            <documentNumber>03992</documentNumber>
+                            <movementBranch>898</movementBranch>
+                            <!-- amex sample -->
+                            <ccNum>ABCDE123456WXYZ</ccNum>
+                            <amount>4.50</amount>
+                            <amountSign>-</amountSign>
+                            <balance>9601334291.14</balance>
+                            <transactionCode>6391</transactionCode>
+                            <movementPostDate>2021-02-02</movementPostDate>
+                            <movementSequence>3992</movementSequence>
+                            <movementHour>202046</movementHour>
+                            <movementChannel>WEB</movementChannel>
+                            <movementLocation/>
+                            <movementDetail/>
+                            <movementPayer/>
+	                        <pathSampleA>003</pathSampleA>
+	                        <pathSampleB>004</pathSampleB>
+                        </Item>
+                    </movements>
+                    <customerData>
+                        <line1>REGRE BPI Lunea WARHOL</line1>
+                        <line2/>
+                        <customerCode>000060396703</customerCode>
+                        <pathSampleA>001</pathSampleA>
+                        <pathSampleB>002</pathSampleB>
+                    </customerData>
+                    <accountData>
+                        <countableBalance>9601334286.64</countableBalance>
+                        <availableBalance>9601334286.64</availableBalance>
+                        <withholidingBalance>0.00</withholidingBalance>
+                        <partialBalance>9601334594.04</partialBalance>
+                        <retentionFlag/>
+                        <descriptionType/>
+                        <hasMoreMovements>1</hasMoreMovements>
+                        <subProduct>205</subProduct>
+                    </accountData>
+                </data>
+            </Data>
+        </mon:complexContent>
+    </mon:applicationData>
+</mon:event>

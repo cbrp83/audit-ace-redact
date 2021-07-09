@@ -1,0 +1,287 @@
+{
+    "mon:event": {
+        "_attributes": {
+            "xmlns:mon": "http://www.ibm.com/xmlns/monitoring/event/v2"
+        },
+        "mon:eventPointData": {
+            "mon:eventData": {
+                "_attributes": {
+                    "mon:eventSourceAddress": "HTTP Reply.terminal.in",
+                    "mon:productVersion": "110010",
+                    "mon:profileVersion": "11"
+                },
+                "mon:eventIdentity": {
+                    "_attributes": {
+                        "mon:eventName": "HTTP Reply.InTerminal"
+                    }
+                },
+                "mon:eventSequence": {
+                    "_attributes": {
+                        "mon:counter": "2",
+                        "mon:creationTime": "2021-04-05T19:07:13.293678Z"
+                    }
+                },
+                "mon:eventCorrelation": {
+                    "_attributes": {
+                        "mon:globalTransactionId": "",
+                        "mon:localTransactionId": "f64b234e-9641-11eb-b35e-ac1ec9790000-1",
+                        "mon:parentTransactionId": ""
+                    }
+                }
+            },
+            "mon:messageFlowData": {
+                "mon:integrationServer": {
+                    "_attributes": {
+                        "mon:hostName": "account-movements-canonical-ace-monitoringprofile-75cd54c8h9bzr",
+                        "mon:name": "account-movements-canonical-ace-monitoringprofile"
+                    }
+                },
+                "mon:application": {
+                    "_attributes": {
+                        "mon:name": "AccountsCanonicalMovementsREST"
+                    }
+                },
+                "mon:messageFlow": {
+                    "_attributes": {
+                        "mon:name": "gen.AccountsCanonicalMovementsREST",
+                        "mon:threadId": "286",
+                        "mon:uniqueFlowName": "account-movements-canonical-ace-monitoringprofile.AccountsCanonicalMovementsREST.gen.AccountsCanonicalMovementsREST"
+                    }
+                },
+                "mon:node": {
+                    "_attributes": {
+                        "mon:nodeLabel": "HTTP Reply",
+                        "mon:nodeType": "ComIbmWSReplyNode",
+                        "mon:terminal": "in"
+                    }
+                }
+            }
+        },
+        "mon:applicationData": {
+            "_attributes": {
+                "xmlns": ""
+            },
+            "mon:complexContent": [
+                {
+                    "_attributes": {
+                        "mon:elementName": "REST"
+                    },
+                    "REST": {
+                        "Input": {
+                            "Method": {
+                                "_text": "GET"
+                            },
+                            "Operation": {
+                                "_text": "get2"
+                            },
+                            "Path": {
+                                "_text": "/canonical/accountmanagement/accounts/1/movements"
+                            },
+                            "URI": {
+                                "_text": "http://account-movements-canonical-ace-monitoringprofile-normal.apps.ocpsbx.grupoib.local/canonical/accountmanagement/accounts/1/movements"
+                            },
+                            "Parameters": {
+                                "accountNumber": {
+                                    "_text": "7003259185"
+                                },
+                                "bank": {
+                                    "_text": "03"
+                                },
+                                "branchCode": {
+                                    "_text": "898"
+                                },
+                                "currency": {
+                                    "_text": "604"
+                                },
+                                "parent-id": {
+                                    "_text": "0018-mb-bff-ms"
+                                },
+                                "product": {
+                                    "_text": "11"
+                                },
+                                "sequenceNumber": {
+                                    "_text": "0"
+                                },
+                                "subProduct": {
+                                    "_text": "205"
+                                },
+                                "trace-id": {
+                                    "_text": "33694464"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "_attributes": {
+                        "mon:elementName": "Data"
+                    },
+                    "Data": {
+                        "status": {
+                            "code": {
+                                "_text": "0000"
+                            },
+                            "desc": {
+                                "_text": "Respuesta exitosa"
+                            }
+                        },
+                        "data": {
+                            "movementsQuantity": {
+                                "_text": "20"
+                            },
+                            "totalMovementsQuantity": {
+                                "_text": "0"
+                            },
+                            "arraysample": {
+                                "a": [
+                                    {
+                                        "_text": "uno"
+                                    },
+                                    {
+                                        "_text": "dos"
+                                    }
+                                ]
+                            },
+                            "movements": {
+                                "Item": [
+                                    {
+                                        "countableMovementDate": {
+                                            "_text": "2021-02-08"
+                                        },
+                                        "description": {
+                                            "_text": "TRANSF WEB/APP"
+                                        },
+                                        "documentNumber": {
+                                            "_text": "03993"
+                                        },
+                                        "movementBranch": {
+                                            "_text": "898"
+                                        },
+                                        "ccNum": {
+                                            "_text": "ABCDEF123456WXYZ"
+                                        },
+                                        "amount": {
+                                            "_text": "4.50"
+                                        },
+                                        "amountSign": {
+                                            "_text": "-"
+                                        },
+                                        "balance": {
+                                            "_text": "9601334286.64"
+                                        },
+                                        "transactionCode": {
+                                            "_text": "6391"
+                                        },
+                                        "movementPostDate": {
+                                            "_text": "2021-02-08"
+                                        },
+                                        "movementSequence": {
+                                            "_text": "3993"
+                                        },
+                                        "movementHour": {
+                                            "_text": "092342"
+                                        },
+                                        "movementChannel": {
+                                            "_text": "WEB"
+                                        },
+                                        "movementLocation": {},
+                                        "movementDetail": {},
+                                        "movementPayer": {}
+                                    },
+                                    {
+                                        "countableMovementDate": {
+                                            "_text": "2021-02-02"
+                                        },
+                                        "description": {
+                                            "_text": "TRANSF WEB/APP"
+                                        },
+                                        "documentNumber": {
+                                            "_text": "03992"
+                                        },
+                                        "movementBranch": {
+                                            "_text": "898"
+                                        },
+                                        "_comment": " amex sample ",
+                                        "ccNum": {
+                                            "_text": "ABCDE123456WXYZ"
+                                        },
+                                        "amount": {
+                                            "_text": "4.50"
+                                        },
+                                        "amountSign": {
+                                            "_text": "-"
+                                        },
+                                        "balance": {
+                                            "_text": "9601334291.14"
+                                        },
+                                        "transactionCode": {
+                                            "_text": "6391"
+                                        },
+                                        "movementPostDate": {
+                                            "_text": "2021-02-02"
+                                        },
+                                        "movementSequence": {
+                                            "_text": "3992"
+                                        },
+                                        "movementHour": {
+                                            "_text": "202046"
+                                        },
+                                        "movementChannel": {
+                                            "_text": "WEB"
+                                        },
+                                        "movementLocation": {},
+                                        "movementDetail": {},
+                                        "movementPayer": {},
+                                        "pathSampleA": {
+                                            "_text": "003"
+                                        },
+                                        "pathSampleB": {
+                                            "_text": "004"
+                                        }
+                                    }
+                                ]
+                            },
+                            "customerData": {
+                                "line1": {
+                                    "_text": "REGRE BPI Lunea WARHOL"
+                                },
+                                "line2": {},
+                                "customerCode": {
+                                    "_text": "000060396703"
+                                },
+                                "pathSampleA": {
+                                    "_text": "001"
+                                },
+                                "pathSampleB": {
+                                    "_text": "002"
+                                }
+                            },
+                            "accountData": {
+                                "countableBalance": {
+                                    "_text": "9601334286.64"
+                                },
+                                "availableBalance": {
+                                    "_text": "9601334286.64"
+                                },
+                                "withholidingBalance": {
+                                    "_text": "0.00"
+                                },
+                                "partialBalance": {
+                                    "_text": "9601334594.04"
+                                },
+                                "retentionFlag": {},
+                                "descriptionType": {},
+                                "hasMoreMovements": {
+                                    "_text": "1"
+                                },
+                                "subProduct": {
+                                    "_text": "205"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

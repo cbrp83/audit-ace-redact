@@ -1,0 +1,75 @@
+{
+    "status": {
+        "code": "0000",
+        "desc": "Respuesta exitosa"
+    },
+    "data": {
+        "movementsQuantity": "20",
+        "totalMovementsQuantity": "0",
+        "arraysample": {
+            "a": [
+                "uno",
+                "dos"
+            ]
+        },
+        "movements": {
+            "Item": [
+                {
+                    "countableMovementDate": "2021-02-08",
+                    "description": "TRANSF WEB/APP",
+                    "documentNumber": "03993",
+                    "movementBranch": "898",
+                    "ccNum": "ABCDEF123456WXYZ",
+                    "amount": "4.50",
+                    "amountSign": "-",
+                    "balance": "9601334286.64",
+                    "transactionCode": "6391",
+                    "movementPostDate": "2021-02-08",
+                    "movementSequence": "3993",
+                    "movementHour": "092342",
+                    "movementChannel": "WEB",
+                    "movementLocation": {},
+                    "movementDetail": {},
+                    "movementPayer": {}
+                },
+                {
+                    "countableMovementDate": "2021-02-02",
+                    "description": "TRANSF WEB/APP",
+                    "documentNumber": "03992",
+                    "movementBranch": "898",
+                    "ccNum": "ABCDE123456WXYZ",
+                    "amount": "4.50",
+                    "amountSign": "-",
+                    "balance": "9601334291.14",
+                    "transactionCode": "6391",
+                    "movementPostDate": "2021-02-02",
+                    "movementSequence": "3992",
+                    "movementHour": "202046",
+                    "movementChannel": "WEB",
+                    "movementLocation": {},
+                    "movementDetail": {},
+                    "movementPayer": {},
+                    "pathSampleA": "003",
+                    "pathSampleB": "004"
+                }
+            ]
+        },
+        "customerData": {
+            "line1": "REGRE BPI Lunea WARHOL",
+            "line2": {},
+            "customerCode": "000060396703",
+            "pathSampleA": "001",
+            "pathSampleB": "002"
+        },
+        "accountData": {
+            "countableBalance": "9601334286.64",
+            "availableBalance": "9601334286.64",
+            "withholidingBalance": "0.00",
+            "partialBalance": "9601334594.04",
+            "retentionFlag": {},
+            "descriptionType": {},
+            "hasMoreMovements": "1",
+            "subProduct": "205"
+        }
+    }
+}
