@@ -5,7 +5,8 @@
 
 // ******* inicio copia hacia global policy
 function IbkRedactUtils(cleanItems) {
-	this.createInput = function(log, config) {
+
+	this.createInput = function(log, config) { // @cambia
 		var parsedBody = JSON.parse(log.response_body);
 		this.redact(parsedBody, null, config.redact);
 
@@ -31,25 +32,118 @@ function IbkRedactUtils(cleanItems) {
 		};
 	}
 
-	this.createCustomLogRecord = function(input, config) {
-		let result = {};
-		for (var k in config.extract) {
-			result[k] = this.navigateOpt(input, config.extract[k]);
+	this.getConfigDefault = function () {
+		var configDefault = {};
+		return configDefault = {
+			"structuresAudit": {
+				"transaction": true,
+				"parameters": true
+			},
+			"default": {
+				"@transaction": "transaction_plain",
+				"@traceId": "parameters.traceId",
+				"@parentId": "parameters.parentId",
+				"@ipOrigen": "parameters.ipOrigen",
+				"@funcionalidadId": "parameters.funcionalidadId",
+				"@timestamp": "parameters.timestamp",
+				"@consumerId": "parameters.consumerId",
+				"@messageId": "parameters.messageId",
+				"@cardIdType": "parameters.cardIdType",
+				"@moduloId": "parameters.moduloId",
+				"@userId": "parameters.userId",
+				"@supervisorId": "parameters.supervisorId",
+				"@netId": "parameters.netId",
+				"@deviceId": "parameters.deviceId",
+				"@countryCode": "parameters.countryCode",
+				"@branchId": "parameters.branchId",
+				"@serviceId": "parameters.serviceId",
+				"@groupMember": "parameters.groupMember",
+				"@referenceNumber": "parameters.referenceNumber",
+				"@serverId": "parameters.serverId",
+				"@channelId": "parameters.channelId",
+				"@xGlobalTransactionId": "parameters.x-global-transaction-id"
+			}
 		}
+	}
+
+	this.getConfigDefault2 = function () {
+		var configDefault = {};
+		return configDefault = {
+			"structuresAudit": {
+				"transaction": true,
+				"parameters": true
+			},
+			"attributes": {
+				"transaction": "transaction_plain",
+				"traceId": "parameters.traceId",
+				"parentId": "parameters.parentId",
+				"ipOrigen": "parameters.ipOrigen",
+				"funcionalidadId": "parameters.funcionalidadId",
+				"timestamp": "parameters.timestamp",
+				"consumerId": "parameters.consumerId",
+				"messageId": "parameters.messageId",
+				"cardIdType": "parameters.cardIdType",
+				"moduloId": "parameters.moduloId",
+				"userId": "parameters.userId",
+				"supervisorId": "parameters.supervisorId",
+				"netId": "parameters.netId",
+				"deviceId": "parameters.deviceId",
+				"countryCode": "parameters.countryCode",
+				"branchId": "parameters.branchId",
+				"serviceId": "parameters.serviceId",
+				"groupMember": "parameters.groupMember",
+				"referenceNumber": "parameters.referenceNumber",
+				"serverId": "parameters.serverId",
+				"channelId": "parameters.channelId",
+				"xGlobalTransactionId": "parameters.x-global-transaction-id"
+			}
+		}
+	}
+
+
+
+	this.createCustomLogRecord = function (input, configService, configDefault) {
+		let result = {};
+
+		if (configService.default) {
+			for (var k in configService.attributes) {
+				result[k] = this.navigateOpt(input, configService.attributes[k]);
+			}
+		} else {
+			for (var k in configDefault.attributes) {
+				result[k] = this.navigateOpt(input, configDefault.attributes[k]);
+			}
+		}
+
+		if (configService.add) {
+			for (var k in configService.add) {
+				result[k] = this.navigateOpt(input, configService.add[k]);
+			}
+		}
+
 		return result;
 	}
 
-	this.navigateOpt = function(obj, path) {
-		var cursor = obj;
-		var parts = path.split(".");
-		for (var i = 0; i < parts.length; ++i) {
-			cursor = cursor[parts[i]];
+	this.createCustomLogRecordBackup = function (input, configService, configDefault) {
+		let result = {};
 
-			if (cursor == undefined) {
-				return null;
+		if (configService.default) {
+			for (var k in configService.default) {
+				result[k] = this.navigateOpt(input, configService.default[k]);
+			}
+		} else {
+			for (var k in configDefault.default) {
+				result[k] = this.navigateOpt(input, configDefault.default[k]);
 			}
 		}
-		return cursor;
+
+		if (configService.add) {
+			for (var k in configService.add) {
+				result[k] = this.navigateOpt(input, configService.add[k]);
+			}
+		}
+
+		return result;
 	}
 
 
@@ -68,7 +162,19 @@ function IbkRedactUtils(cleanItems) {
 		return null;
 	}
 
-	// copied from https://stackoverflow.com/a/3855394
+	this.navigateOpt = function(obj, path) { 
+		var cursor = obj;
+		var parts = path.split(".");
+		for (var i = 0; i < parts.length; ++i) {
+			cursor = cursor[parts[i]];
+
+			if (cursor == undefined) {
+				return null;
+			}
+		}
+		return cursor;
+	}
+
 	this.decodeQueryString = function(queryStr) {
 		if (queryStr == "") return {};
 		var elements = queryStr.split('&');
@@ -83,17 +189,12 @@ function IbkRedactUtils(cleanItems) {
 		return result;
 	}
 
-	// copied from https://stackoverflow.com/a/34209399
 	this.encodeQueryString = function(params) {
 		return Object.keys(params)
 			.map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
 			.join('&');
 	}
 
-	//console.log(arrayToObject(obj.request_http_headers));
-
-	// apic headers are in an array of elements, each with 1 key.
-	// This function converts that useless format into an object with several keys
 	this.arrayToObject = function(objArray) {
 		var obj = {};
 		var len = objArray.length;
@@ -106,8 +207,9 @@ function IbkRedactUtils(cleanItems) {
 		return obj;
 	}
 
-	this.redact = function(obj, path, redactConfig) {
+	this.redact = function(obj, path, redactConfig) { //@cambia
 		for (var k in obj) {
+			
 			var value = obj[k];
 			if (value == null) {
 				continue;
@@ -116,14 +218,13 @@ function IbkRedactUtils(cleanItems) {
 		}
 	}
 
-	this.redactAny = function(parent, value, path, k, redactConfig) {
-		if (Array.isArray(value)) {
+	this.redactAny = function(parent, value, path, k, redactConfig) { //@cambia
+		if (Array.isArray(value)) { //-- false
 			var len = value.length;
 			for (var i = 0; i < len; i++) {
 				this.redactAny(parent, value[i], path, k, redactConfig);
 			}
-		} else if (typeof value === 'object') {
-			// This only applies to ace monitoring events
+		} else if (typeof value === 'object') { // -- false --- validar para que sirve esta parte
 			var items = value["Item"];
 			if (cleanItems && Array.isArray(items) && Object.keys(value).length == 1) {
 				parent[k] = items;
@@ -146,27 +247,23 @@ function IbkRedactUtils(cleanItems) {
 		return parts.join(".", parts);
 	}
 
-	this.redactField = function(parent, k, path, redactConfig) {
+	this.redactField = function(parent, k, path, redactConfig) { //@cambia
 		if (!parent.hasOwnProperty(k)) {
 			return;
 		}
+
 		var path = this.buildPath(path, k);
-		// console.log("path = " + path);
-		// TODO: handle optional full
-		if (redactConfig.anywhere.full.has(k) || redactConfig.path.full.has(path)) {
-			//console.log(buildPath(path,k));
+
+		if (redactConfig.anywhere.full.includes(k) || redactConfig.path.full.includes(path)) {
 			parent[k] = "*".repeat(String(parent[k]).length);
 		}
 
-		if (redactConfig.anywhere.cc.has(k) || redactConfig.path.cc.has(path)) {
-			//console.log(buildPath(path,k));
+		if (redactConfig.anywhere.cc.includes(k) || redactConfig.path.cc.includes(path)) {
 			parent[k] = this.partialRedactCCnumbers(parent[k]);
 		}
 	}
 
 	this.partialRedactCCnumbers = function(ccNumbers) {
-		// With this regex "(.*?)(.{0,6})(.{0,4})" less code is used
-		// but performance is worse
 		if (ccNumbers == null) {
 			return null;
 		}

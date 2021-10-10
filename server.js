@@ -9,23 +9,24 @@ const yargs = require('yargs');
 const axios = require("axios");
 const fs = require('fs');
 
-var config = JSON.parse(fs.readFileSync('config/config.json'));
-
-console.log(JSON.stringify(config));
-// TODO: handle non existent params
-config.redact.anywhere.full = new Set(config.redact.anywhere.full);
-config.redact.anywhere.cc = new Set(config.redact.anywhere.cc);
-config.redact.path.full = new Set(config.redact.path.full);
-config.redact.path.cc = new Set(config.redact.path.cc);
-
-
 function processEvent(eventXml) {
-    console.log("got " + eventXml.substring(0, 10));
-    let input = aceUtils.createInput(eventXml, config);
-    //console.log("input=" + JSON.stringify(input, null, 4));
-    let custom_log_record = ibkredact.createCustomLogRecord(input, config);
+
+    let input = aceUtils.createInput(eventXml);
+    
+
+    var configDefault = ibkredact.getConfigDefault();
+    //console.log("configDefault", configDefault);
+    
+    var configService = input.config
+    delete input.config;
+    
+    console.log("Variable configService: ", configService);
+    console.log("Data Audit: ", input);
+
+    let custom_log_record = ibkredact.createCustomLogRecord(input, configService, configDefault);
     let custom_log_record_str = JSON.stringify(custom_log_record, null, 4);
-    console.log("sending to nr custom rec=" + custom_log_record_str);
+
+    console.log("sending to nr custom ibkrec=" + custom_log_record_str);
 
     axios({
         method: "POST",
@@ -115,6 +116,7 @@ const custom_headers = {
 // i.e. -h localhost -t 1414 -c DEV.APP.SVRCONN -m QM1 -q DEV.QUEUE.1 -u mqapp -p password
 var getter = new MqGetter(params.mqhost + "(" + params.mqport + ")", params.mqchannel, params.queuemanager,
     params.queue, params.mquser, params.mqpassword, processEvent);
+
 
 getter.startGetter();
 console.log("mq getter callback set");

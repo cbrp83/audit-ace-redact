@@ -45,7 +45,10 @@ function MqGetter(connectionName, channelName, qMgr, qName,
     mq.setTuningParameters({
       syncMQICompat: true
     });
-    mq.Connx(qMgr, cnOpt, this.handleConn(this));
+
+    mq.Conn(qMgr, this.handleConn(this));
+
+    //mq.Connx(qMgr, secParams, this.handleConn(this)); --CBRP
 
     // We need to keep the program active so that the callbacks from the
     // message handler are processed. This is one way to do it. Use the
